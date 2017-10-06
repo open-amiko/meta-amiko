@@ -1,9 +1,9 @@
 KV = "4.10.6"
-SRCDATE = "20170917"
+SRCDATE = "20171006"
 
 require amiko-dvb-modules.inc
 
-SRC_URI[md5sum] = "6c1ad552840abfcfd4159d325dcee874"
-SRC_URI[sha256sum] = "6726927583c1cbe5cc978809df97cfc1c813529c77f86c7f6980a9e2b09d8853"
+SRC_URI[md5sum] = "786372b1064c673dbb595e3d763d6354"
+SRC_URI[sha256sum] = "e6b7621bcc1766c27c05818bf7235c2b967e3b062cecc1af342deaf992a4916c"
 
 COMPATIBLE_MACHINE = "vipert2c"

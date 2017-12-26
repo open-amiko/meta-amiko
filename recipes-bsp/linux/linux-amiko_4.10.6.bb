@@ -4,7 +4,7 @@ LICENSE = "GPLv2"
 
 KERNEL_RELEASE = "4.10.6"
 SRCDATE = "20170831"
-COMPATIBLE_MACHINE = "vipert2c|vipercombo"
+COMPATIBLE_MACHINE = "vipert2c|vipercombo|vipercombohdd"
 MACHINE_KERNEL_PR_append = ".0"
 
 SRC_URI[md5sum] = "cb28a0056279ad46af776fd5cdbcf88f"

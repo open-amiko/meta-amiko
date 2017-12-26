@@ -37,6 +37,7 @@ UBI_VOLNAME = "rootfs"
 IMAGEDIR ?= "\
 ${@bb.utils.contains('MACHINE', 'vipert2c', 'vipert2c' , '', d)}\
 ${@bb.utils.contains('MACHINE', 'vipercombo', 'vipercombo' , '', d)}\
+${@bb.utils.contains('MACHINE', 'vipercombohdd', 'vipercombohdd' , '', d)}\
 "
 
 IMGDEPLOYDIR ?= "${DEPLOY_DIR_IMAGE}"

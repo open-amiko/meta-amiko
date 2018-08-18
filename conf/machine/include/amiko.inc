@@ -38,7 +38,10 @@ IMAGEDIR ?= "\
 ${@bb.utils.contains('MACHINE', 'vipert2c', 'vipert2c' , '', d)}\
 ${@bb.utils.contains('MACHINE', 'vipercombo', 'vipercombo' , '', d)}\
 ${@bb.utils.contains('MACHINE', 'vipercombohdd', 'vipercombohdd' , '', d)}\
+${@bb.utils.contains('MACHINE', 'viperslim', 'viperslim' , '', d)}\
 "
+
+FORCE ?= "no"
 
 IMGDEPLOYDIR ?= "${DEPLOY_DIR_IMAGE}"
 IMAGEVERSION := "${DISTRO_NAME}-${DISTRO_VERSION}-${DATE}"
@@ -49,9 +52,11 @@ IMAGE_CMD_ubi_append = " \
 	cp ${IMGDEPLOYDIR}/${IMAGE_NAME}.rootfs.ubi ${IMGDEPLOYDIR}/${IMAGEDIR}/rootfs.bin; \
 	gzip -9c ${DEPLOY_DIR_IMAGE}/vmlinux-${MACHINE}.bin > ${IMGDEPLOYDIR}/${IMAGEDIR}/kernel.bin; \
 	echo "${IMAGEVERSION}" > ${IMGDEPLOYDIR}/${IMAGEDIR}/imageversion; \
-    ${@bb.utils.contains('MACHINE', 'vipert2c', \
-    'echo "dont change this file" > ${IMGDEPLOYDIR}/${IMAGEDIR}/force;' , \
-    'echo "rename this file to force to force an update without confirmation" > ${IMGDEPLOYDIR}/${IMAGEDIR}/noforce;', d)} \
+	if [ "${FORCE}" = "yes" ]; then \
+		echo "rename this file to 'noforce' to force an update with confirmation" > ${IMGDEPLOYDIR}/${IMAGEDIR}/force; \
+	else \
+		echo "rename this file to 'force' to force an update without confirmation" >${IMGDEPLOYDIR}/${IMAGEDIR}/noforce; \
+	fi; \
 	cd ${IMGDEPLOYDIR}; \
 	zip ${DISTRO_NAME}-${DISTRO_VERSION}-${MACHINE}_usb.zip ${IMAGEDIR}/*; \
 	rm -Rf ${IMAGEDIR}; \
